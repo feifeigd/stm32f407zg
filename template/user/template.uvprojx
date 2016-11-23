@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\core;..\user;..\fwlib</IncludePath>
+              <IncludePath>..\core;..\user;..\fwlib\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,6 +384,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>system_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\system_stm32f4xx.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -402,12 +407,12 @@
             <File>
               <FileName>stm32f4xx_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\fwlib\stm32f4xx_gpio.c</FilePath>
+              <FilePath>..\fwlib\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\fwlib\stm32f4xx_gpio.h</FilePath>
+              <FileName>stm32f4xx_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\fwlib\src\stm32f4xx_rcc.c</FilePath>
             </File>
           </Files>
         </Group>
