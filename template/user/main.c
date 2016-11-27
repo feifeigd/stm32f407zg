@@ -13,6 +13,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
+#include "usart.h"
+#include <delay.h>
 
 /** @addtogroup Template_Project
   * @{
@@ -25,7 +27,6 @@
 static __IO uint32_t uwTimingDelay;
 
 /* Private function prototypes -----------------------------------------------*/
-static void Delay(__IO uint32_t nTime);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -36,48 +37,16 @@ static void Delay(__IO uint32_t nTime);
   */
 int main(void)
 {
-	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF,ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Init(GPIOF, &GPIO_InitStructure);
-	
-  /*!< At this stage the microcontroller clock setting is already configured, 
-       this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/
-       startup_stm32f429_439xx.s/startup_stm32f401xx.s or startup_stm32f411xe.s)
-       before to branch to application main.
-       To reconfigure the default setting of SystemInit() function, 
-       refer to system_stm32f4xx.c file */
-
-
-  /* Add your application code here */
-  /* Insert 50 ms delay */
-  Delay(5);
-      
-  /* Infinite loop */
-  while (1)
-  {
-		GPIO_SetBits(GPIOF,GPIO_Pin_9 | GPIO_Pin_10);
-		Delay(5);
-		GPIO_ResetBits(GPIOF,GPIO_Pin_9 | GPIO_Pin_10);
-		Delay(5);
-  }
+	u32 t = 0;
+	uart_init(115200);
+	delay_init(84);
+	while(1){
+		printf("t:%d\r\n", t);
+		delay_ms(500);
+		++t;
+	}
 }
 
-/**
-  * @brief  Inserts a delay time.
-  * @param  nTime: specifies the delay time length, in milliseconds.
-  * @retval None
-  */
-void Delay(__IO uint32_t nTime)
-{ 
-  uwTimingDelay = nTime;
-
-  while(uwTimingDelay != 0);
-}
 
 /**
   * @brief  Decrements the TimingDelay variable.
