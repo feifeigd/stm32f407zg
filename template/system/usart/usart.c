@@ -44,7 +44,7 @@ struct __FILE
 
 FILE __stdout;       
 //定义_sys_exit()以避免使用半主机模式    
-_sys_exit(int x) 
+void _sys_exit(int x) 
 { 
 	x = x; 
 } 
@@ -83,7 +83,7 @@ void uart_init(u32 bound){
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_USART1); //GPIOA10复用为USART1
 	
 	//USART1端口配置
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10; //GPIOA9与GPIOA10
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10; //GPIOA9与GPIOA10
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;//复用功能
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	//速度50MHz
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP; //推挽复用输出
@@ -97,9 +97,9 @@ void uart_init(u32 bound){
 	USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
 	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
 	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
-  USART_Init(USART1, &USART_InitStructure); //初始化串口1
+	USART_Init(USART1, &USART_InitStructure); //初始化串口1
 	
-  USART_Cmd(USART1, ENABLE);  //使能串口1 
+	USART_Cmd(USART1, ENABLE);  //使能串口1 
 	
 	//USART_ClearFlag(USART1, USART_FLAG_TC);
 	
@@ -107,7 +107,7 @@ void uart_init(u32 bound){
 	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);//开启相关中断
 
 	//Usart1 NVIC 配置
-  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;//串口1中断通道
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;//串口1中断通道
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=3;//抢占优先级3
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority =3;		//子优先级3
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能

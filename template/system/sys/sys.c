@@ -16,13 +16,49 @@
 //无
 //////////////////////////////////////////////////////////////////////////////////  
 
-
+#ifdef USE_arm_eabi_gcc_exe
+/*
+// TODO: 未测试这段注释的代码
 //THUMB指令不支持汇编内联
 //采用如下方法实现执行汇编指令WFI  
+//__asm 
+	void WFI_SET(void)
+{
+	asm(
+	"WFI ;"
+	);
+}
+//关闭所有中断(但是不包括fault和NMI中断)
+void INTX_DISABLE(void)
+{
+	asm(
+		"CPSID   I\n"
+	"BX      LR	"
+		);  
+}
+//开启所有中断
+void INTX_ENABLE(void)
+{
+	asm(
+	"CPSIE   I\n"
+	"BX      LR "
+		);
+}
+//设置栈顶地址
+//addr:栈顶地址
+void MSR_MSP(u32 addr) 
+{
+	asm(
+		"MSR MSP, r0  \n"			//set Main Stack value
+	"BX r14"
+		);
+}
+*/
+#else	
 __asm void WFI_SET(void)
 {
-	WFI;		  
-}
+	WFI ;
+}	
 //关闭所有中断(但是不包括fault和NMI中断)
 __asm void INTX_DISABLE(void)
 {
@@ -42,6 +78,9 @@ __asm void MSR_MSP(u32 addr)
 	MSR MSP, r0 			//set Main Stack value
 	BX r14
 }
+	  
+#endif // USE_arm_eabi_gcc_exe
+
 
 
 
