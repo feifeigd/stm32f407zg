@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\system\sys</IncludePath>
+              <IncludePath>..\system\sys;..\system\delay;..\system\usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -408,6 +408,26 @@
               <FileName>sys.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\system\sys\sys.h</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\system\delay\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\system\delay\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\system\usart\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\system\usart\usart.h</FilePath>
             </File>
           </Files>
         </Group>
