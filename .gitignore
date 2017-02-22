@@ -28,5 +28,7 @@
 *.out
 *.app
 
+Debug/
+
 Objects/
 Listings/
